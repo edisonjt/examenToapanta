@@ -22,5 +22,18 @@ public class AlumnoService {
   @Transactional
   public Alumno crearAlumno(Alumno alumno) {
 
+    Colegio colegio = colegioRepository.findById(alumno.getCodigoColegio()).orElse(null);
+    if (colegio == null) {
+      throw new RuntimeException("El colegio no está registrado");
+    }
+
+    Date fechaActual = new Date();
+    if (alumno.getFechaNacimiento().after(fechaActual)) {
+      throw new RuntimeException("La fecha de nacimiento no puede ser mayor a la fecha actual");
+    }
+
+    alumnoRepository.save(alumno);
+
+    return alumno;
   }
 }
