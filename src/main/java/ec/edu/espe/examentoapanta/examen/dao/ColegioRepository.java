@@ -8,5 +8,5 @@ import ec.edu.espe.examentoapanta.examen.domain.Colegio;
 
 @Repository
 public interface ColegioRepository extends CrudRepository<Colegio, Integer> {
-  public List<Colegio> findByNombreOrderByNombre(Integer codColegio);
+  public List<Colegio> findByNombreOrderByNombre(String nombre);
 }
